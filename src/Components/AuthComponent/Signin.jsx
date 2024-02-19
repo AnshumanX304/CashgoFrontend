@@ -1,7 +1,7 @@
 const signin = () => {
     return ( 
-        <div>
-            SIGNIN
+        <div className="text-3xl font-bold underline">
+            hello
         </div>
      );
 }
