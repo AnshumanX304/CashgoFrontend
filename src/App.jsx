@@ -18,6 +18,9 @@ function App() {
           <Route exact path="/send" element={<Sendmoney/>}/>
         </Routes>
       </BrowserRouter>
+       {/* <h1 className="text-3xl font-bold underline">
+      bkskvb
+    </h1>  */}
   
     </>
   )
