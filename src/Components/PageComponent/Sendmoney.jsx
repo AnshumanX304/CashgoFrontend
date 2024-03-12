@@ -22,7 +22,7 @@ const Sendmoney = () => {
                         </div>
                     </div>
                     <div className="mt-3">
-                        <p className="font-semibold">Amount (in Rs)</p>
+                        <p className="font-semibold">Amount (in ₹)</p>
                         <input className="w-full mt-5 border-2 p-2 rounded-lg border-slate-300" placeholder="Enter the amount"/>
                         <button className="w-full bg-green-500 my-5 h-10 text-base rounded-lg text-white hover:bg-green-400 hover:scale-101">Initiate Transfer</button>
                     </div>

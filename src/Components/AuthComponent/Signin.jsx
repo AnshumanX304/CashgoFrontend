@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 const signin = () => {
     return ( 
         <div className="bg-[#737373] h-screen flex justify-center items-center" >

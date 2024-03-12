@@ -44,7 +44,7 @@ function User({user}){
                     <Link 
                         to={"/send"}
                         state={{firstName:user.firstName+" "+user.lastName}}>
-                    <button className=" bg-black text-white h-9 w-36 text-sm rounded-lg">Send Money</button></Link>
+                    <button className=" bg-black text-white h-9 w-36 text-sm rounded-lg hover:scale-101 hover:bg-green-500 hover:text-sm">Send Money</button></Link>
                 </div>
 
             </div>
