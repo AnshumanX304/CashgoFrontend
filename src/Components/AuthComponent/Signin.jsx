@@ -1,6 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import {useState,useContext} from 'react';
+import validator from "validator";
+import ReqContext from "../../Context/ReqContext";
 
 const signin = () => {
+    const navigate=useNavigate();
+
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const {login} = useContext(ReqContext);
+
+    const validate=(inputText)=>{
+        setEmail(validator.trim(inputText));
+    }
+
+    function handlePassword(e){
+        setPassword(e.target.value);
+    }
+
+    async function handleSubmits(e){
+        e.preventDefault();
+        let payload = {
+            email: email,
+            password: password
+        };
+        await login(payload)
+        .then((res)=>{
+            console.log(res.data.success,res.data.msg);
+            
+            navigate("/");
+        })
+        .catch((err)=>{
+            console.log(err.response.data);
+            alert(err.response.data.msg);
+        });
+    }
+
+
+
     return ( 
         <div className="bg-[#737373] h-screen flex justify-center items-center" >
             <div className="h-fit w-fit bg-white rounded-lg p-5">
@@ -12,14 +49,26 @@ const signin = () => {
                 </div>
                 <div className="flex">
                     <div className="my-3 mx-3 w-full">
-                        <form>
+                        <form onSubmit={handleSubmits}>
                             <label className="font-semibold my-2 ">Email</label>
                             <br></br>
-                            <input className="w-full mb-5 mt-3 border-2 p-2 rounded-lg border-slate-300" type="email" placeholder="johndoe@example.com"/>
+                            <input className="w-full mb-5 mt-3 border-2 p-2 rounded-lg border-slate-300" 
+                                type="email" 
+                                placeholder="johndoe@example.com"
+                                name="email"
+                                value={email}
+                                required
+                                onChange={(e)=>validate(e.target.value)}/>
                             <br></br>
                             <label className="font-semibold my-2">Password</label>
                             <br></br>
-                            <input className="w-full mb-5 mt-3 border-2 p-2 rounded-lg border-slate-300" type="password"/>
+                            <input className="w-full mb-5 mt-3 border-2 p-2 rounded-lg border-slate-300" 
+                                type="password"
+                                placeholder="12345@example"
+                                name="password"
+                                value={password}
+                                required
+                                onChange={handlePassword}/>
                             <br></br>
                             <button className="bg-black text-white w-full rounded-lg h-10 my-3">Sign In</button>
                         </form>
