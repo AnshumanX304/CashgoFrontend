@@ -14,7 +14,7 @@ instance.interceptors.response.use((response) => {
     const originalRequest = error.config;
     
     if(error){
-        if (error.response.status === 401 && originalRequest.url === url + "user/refreshtoken") {
+        if (error.response.status === 401) {
             Cookies.remove('ac_token');
             localStorage.setItem("isLoggedin",'false');
             window.location.href = '/signin'

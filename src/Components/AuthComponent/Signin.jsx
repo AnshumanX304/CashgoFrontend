@@ -2,6 +2,7 @@ import { Link,useNavigate } from "react-router-dom";
 import {useState,useContext} from 'react';
 import validator from "validator";
 import ReqContext from "../../Context/ReqContext";
+import Cookies from "js-cookie";
 
 const signin = () => {
     const navigate=useNavigate();
@@ -26,8 +27,9 @@ const signin = () => {
         };
         await login(payload)
         .then((res)=>{
-            console.log(res.data.success,res.data.msg);
-            
+            console.log(res.data.accesstoken);
+            Cookies.set("ac_token",res.data.accesstoken);
+            localStorage.setItem("isLoggedin",'true');
             navigate("/");
         })
         .catch((err)=>{
