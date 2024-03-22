@@ -7,10 +7,12 @@ import Signin from "./Components/AuthComponent/Signin";
 import Sendmoney from './Components/PageComponent/Sendmoney';
 import Dashboard from './Components/PageComponent/Dashboard';
 import { ReqContextProvider } from './Context/ReqContext';
+import { RecoilRoot } from 'recoil';
 function App() {
   return (
     <>
       <BrowserRouter>
+        <RecoilRoot>
         <ReqContextProvider>
           <Routes>
             <Route exact path="/signup" element={<Signup/>}/>
@@ -19,6 +21,7 @@ function App() {
             <Route exact path="/send" element={<Sendmoney/>}/>
           </Routes>
         </ReqContextProvider>
+        </RecoilRoot>
       </BrowserRouter>
     </>
   )

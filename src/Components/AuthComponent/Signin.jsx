@@ -3,6 +3,8 @@ import {useState,useContext} from 'react';
 import validator from "validator";
 import ReqContext from "../../Context/ReqContext";
 import Cookies from "js-cookie";
+import {useSetRecoilState} from "recoil";
+import { detailsAtom } from "../../Store/Atoms/DetailsAtom";
 
 const signin = () => {
     const navigate=useNavigate();
@@ -10,6 +12,8 @@ const signin = () => {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const {login} = useContext(ReqContext);
+
+    const setDetails=useSetRecoilState(detailsAtom);
 
     const validate=(inputText)=>{
         setEmail(validator.trim(inputText));
@@ -27,7 +31,7 @@ const signin = () => {
         };
         await login(payload)
         .then((res)=>{
-            console.log(res.data.accesstoken);
+            setDetails(res.data.user);
             Cookies.set("ac_token",res.data.accesstoken);
             localStorage.setItem("isLoggedin",'true');
             navigate("/");
